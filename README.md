@@ -1,51 +1,56 @@
-# Demo Phân Loại Hoa Iris Dataset
+﻿# Ứng dụng phân loại hoa Iris
 
-Ứng dụng Streamlit phân loại hoa Iris bằng Gaussian Naive Bayes. Dự án gồm mã nguồn, hướng dẫn chạy và ảnh minh họa cần thiết.
+Ứng dụng web Streamlit dự đoán loài hoa Iris bằng thuật toán Gaussian Naive Bayes. Người dùng nhập bốn số đo của hoa và xem loài dự đoán, xác suất của từng loài, ảnh minh họa và vị trí mẫu trên biểu đồ.
 
-## Mã nguồn dự án
+**Repository:** [KietNH-ai/AIL_IRIS_Classification](https://github.com/KietNH-ai/AIL_IRIS_Classification)  
+**Yêu cầu:** Python 3.10 trở lên.
 
-Mã nguồn được lưu tại [KietNH-ai/AIL_IRIS_Classification](https://github.com/KietNH-ai/AIL_IRIS_Classification). Repository hiện chưa có bản triển khai trực tuyến.
+## Tính năng
 
-## Chạy trên máy tính
+- Huấn luyện Gaussian Naive Bayes trên toàn bộ 150 mẫu Iris để dự đoán.
+- Đánh giá độ chính xác riêng bằng tập kiểm tra chiếm 20%, có phân tầng và `random_state=42`.
+- Nhập chiều dài, chiều rộng đài hoa và cánh hoa bằng thanh trượt; chỉ dự đoán sau khi bấm **Dự đoán ngay**.
+- Hiển thị kết quả, xác suất của Setosa, Versicolor và Virginica cùng ảnh minh họa tương ứng.
+- Xem bảng dữ liệu Iris và biểu đồ phân bố Petal Length/Petal Width có đánh dấu mẫu vừa nhập.
 
-Yêu cầu Python 3.10 trở lên. Giải nén thư mục, mở PowerShell tại thư mục dự án và chạy:
+## Chạy trên máy tính Windows
+
+Mở PowerShell tại thư mục muốn lưu dự án và chạy:
 
 ```powershell
+git clone https://github.com/KietNH-ai/AIL_IRIS_Classification.git
+cd AIL_IRIS_Classification
 py -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-Streamlit sẽ hiện một địa chỉ cục bộ, thường là `http://localhost:8501`; mở địa chỉ đó trên trình duyệt.
+Khi Streamlit khởi động, mở địa chỉ được in trong cửa sổ lệnh, thường là <http://localhost:8501>.
 
-## Chức năng
+## Kết quả đánh giá và kiểm tra
 
-- Gaussian Naive Bayes được huấn luyện trên toàn bộ 150 mẫu Iris.
-- Accuracy được đánh giá riêng trên tập test 20%, `random_state=42`, `stratify=y`.
-- Bốn thanh trượt nhập đặc trưng; kết quả chỉ xuất hiện sau khi bấm **Dự đoán ngay**.
-- Hiển thị loài được dự đoán, xác suất của ba loài và ảnh minh họa tương ứng.
-- Có bảng dữ liệu Iris và biểu đồ vị trí điểm nhập mới trên phân bố cánh hoa.
+Accuracy tham chiếu là **96.67%** trên tập kiểm tra 20%. Sau khi đánh giá, ứng dụng huấn luyện mô hình dùng để dự đoán trên toàn bộ dữ liệu Iris. Báo cáo có bốn trường hợp đầu vào, kết quả và nhận xét trường hợp gần ranh giới giữa hai loài tại [`bao_cao_kiem_thu.md`](bao_cao_kiem_thu.md).
 
-## Kiểm thử
+Notebook trình bày các bước nạp dữ liệu, đánh giá mô hình, kiểm tra bốn trường hợp và chạy ứng dụng trong Google Colab: [Mở notebook trên Colab](https://colab.research.google.com/github/KietNH-ai/AIL_IRIS_Classification/blob/main/iris_streamlit_demo.ipynb).
 
-Các đầu vào mẫu, kết quả, xác suất và nhận xét ca ranh giới được ghi trong [`bao_cao_kiem_thu.md`](bao_cao_kiem_thu.md). Notebook [`iris_streamlit_demo.ipynb`](iris_streamlit_demo.ipynb) có các bước nạp dữ liệu, đánh giá, huấn luyện toàn bộ dữ liệu và kiểm tra bốn trường hợp theo đề.
+Để lưu ảnh giao diện cho báo cáo, chạy ứng dụng, nhập lần lượt các bộ số đo trong báo cáo, bấm **Dự đoán ngay** và lưu ảnh vào `screenshots/` theo tên đã ghi trong báo cáo.
 
-Để chụp ảnh giao diện đính kèm báo cáo, chạy ứng dụng theo hướng dẫn bên trên, chọn bộ giá trị trong bảng của báo cáo, bấm **Dự đoán ngay** rồi chụp màn hình vùng gồm thông số và kết quả.
+## Cấu trúc dự án
 
-## Cấu trúc
-
-- `app.py`: ứng dụng Streamlit, đánh giá và huấn luyện mô hình.
-- `iris_streamlit_demo.ipynb`: notebook code tiếng Việt để chạy trên Colab/Jupyter.
-- `bao_cao_kiem_thu.md`: kết quả kiểm thử và nhận xét.
-- `requirements.txt`: thư viện cần cài.
-- `assets/`: ảnh minh họa Setosa, Versicolor và Virginica.
-- `screenshots/`: ảnh chụp giao diện kiểm thử để đính kèm báo cáo.
+- `app.py`: giao diện Streamlit, đánh giá và huấn luyện mô hình, dự đoán và biểu đồ.
+- `iris_streamlit_demo.ipynb`: notebook tiếng Việt cho Jupyter/Google Colab.
+- `bao_cao_kiem_thu.md`: kết quả đánh giá, các trường hợp kiểm tra và hướng dẫn chụp ảnh.
+- `requirements.txt`: các thư viện Python cần cài.
+- `assets/`: ảnh minh họa ba loài hoa.
+- `screenshots/`: nơi lưu ảnh giao diện kiểm thử.
 
 ## Triển khai lên Streamlit Community Cloud
 
-Sau khi mã nguồn đã được đẩy lên GitHub, đăng nhập tại [share.streamlit.io](https://share.streamlit.io), chọn repository `KietNH-ai/AIL_IRIS_Classification`, branch `main`, file `app.py`, rồi chọn **Deploy**.
+Sau khi repository có mã nguồn, đăng nhập tại [share.streamlit.io](https://share.streamlit.io), chọn **Create app**, rồi cấu hình:
 
-## Nguồn
+- Repository: `KietNH-ai/AIL_IRIS_Classification`
+- Branch: `main`
+- Main file path: `app.py`
 
-- GitHub repository: https://github.com/KietNH-ai/AIL_IRIS_Classification
-- Notebook trên GitHub: https://colab.research.google.com/github/KietNH-ai/AIL_IRIS_Classification/blob/main/iris_streamlit_demo.ipynb
+Chọn **Deploy** để triển khai ứng dụng. Streamlit Community Cloud sẽ cài các thư viện khai báo trong `requirements.txt`.
+
