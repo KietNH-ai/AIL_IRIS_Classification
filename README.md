@@ -2,7 +2,7 @@
 
 Ứng dụng web Streamlit dự đoán loài hoa Iris bằng thuật toán Gaussian Naive Bayes. Người dùng nhập bốn số đo của hoa và xem loài dự đoán, xác suất của từng loài, ảnh minh họa và vị trí mẫu trên biểu đồ.
 
-**Repository:** [KietNH-ai/AIL_IRIS_Classification](https://github.com/KietNH-ai/AIL_IRIS_Classification)  
+**Repository:** [KietNH-ai/AIL_IRIS_Classification](https://github.com/KietNH-ai/AIL_IRIS_Classification)
 **Yêu cầu:** Python 3.10 trở lên.
 
 ## Tính năng
@@ -53,4 +53,3 @@ Sau khi repository có mã nguồn, đăng nhập tại [share.streamlit.io](htt
 - Main file path: `app.py`
 
 Chọn **Deploy** để triển khai ứng dụng. Streamlit Community Cloud sẽ cài các thư viện khai báo trong `requirements.txt`.
-
